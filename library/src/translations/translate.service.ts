@@ -84,6 +84,10 @@ export class TranslateService {
         return this.language;
     }
 
+    getDictionary() {
+        return this.dictionary;
+    }
+
     translate(data: string | TranslateOptions) {
         // Validate if the language does exist in the dictionary, else throw an error.
         if (!this.isLanguageSupported(this.language)) {
