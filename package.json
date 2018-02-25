@@ -3,8 +3,7 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
-        "ng": "ng",
-        "start": "ng serve",
+        "playground": "ng serve",
         "bundle": "ng-packagr -p ./library/ng-package.json"
     },
     "private": true,
