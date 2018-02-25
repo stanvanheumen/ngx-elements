@@ -1,5 +1,5 @@
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-root',
@@ -9,10 +9,18 @@ export class AppComponent implements OnInit {
 
     form: FormGroup;
 
-    ngOnInit(): void {
+    ngOnInit() {
+        const required = Validators.required;
+        const email = Validators.email;
+
         this.form = new FormGroup({
-            radio: new FormControl('men')
+            email: new FormControl('', [required, email]),
+            password: new FormControl('', required)
         });
+    }
+
+    onSubmit() {
+        alert('The form was submitted.');
     }
 
 }

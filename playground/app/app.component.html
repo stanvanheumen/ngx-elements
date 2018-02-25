@@ -1,10 +1,17 @@
-<div style="margin: 40px auto; padding: 0 40px; max-width: 800px; width: 100%;">
+<div style="margin: 40px auto; padding: 0 40px; max-width: 440px; width: 100%;">
 
-    <ngx-card title="My first form">
-        <form [formGroup]="form" novalidate>
-            <ngx-radio [formControlName]="'radio'" value="men">Men</ngx-radio>
-            <ngx-radio [formControlName]="'radio'" value="women">Women</ngx-radio>
-            <ngx-radio [formControlName]="'radio'" value="both">Both</ngx-radio>
+    <ngx-card title="My first form" direction="center">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <ngx-form-control icon="email" label="Email">
+                <input formControlName="email" placeholder="E.g. johndoe@gmail.com" autocomplete="email">
+            </ngx-form-control>
+            <ngx-form-control icon="email" label="Password">
+                <input formControlName="password" type="password" placeholder="************"
+                       autocomplete="current-password">
+            </ngx-form-control>
+            <ngx-group [full]="true">
+                <ngx-button [disabled]="!form.valid" type="submit" color="blue">Submit</ngx-button>
+            </ngx-group>
         </form>
     </ngx-card>
 
