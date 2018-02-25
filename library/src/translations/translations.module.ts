@@ -1,4 +1,4 @@
-import {NgModule, Optional, SkipSelf} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {NgxMiscellaneousModule} from '../miscellaneous/miscellaneous.module';
@@ -14,12 +14,6 @@ import {TranslateConfig} from './translate.config';
     exports: [NgxTranslatePipe]
 })
 export class NgxTranslationsModule {
-
-    constructor(@Optional() @SkipSelf() parentModule: NgxTranslationsModule) {
-        if (parentModule) {
-            throw new Error('NgxTranslationsModule is already loaded; Import it in the AppModule only.');
-        }
-    }
 
     static forRoot(config: TranslateConfig) {
         return {

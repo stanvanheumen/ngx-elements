@@ -1,4 +1,4 @@
-import {NgModule, Optional, SkipSelf} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {NgxTranslationsModule} from '../translations/translations.module';
@@ -19,12 +19,6 @@ import {NotificationsService} from './notifications.service';
     ]
 })
 export class NgxNotificationsModule {
-
-    constructor(@Optional() @SkipSelf() parentModule: NgxNotificationsModule) {
-        if (parentModule) {
-            throw new Error('NgxNotificationsModule is already loaded; Import it in the AppModule only.');
-        }
-    }
 
     static forRoot() {
         return {
