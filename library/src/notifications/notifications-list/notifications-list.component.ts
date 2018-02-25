@@ -1,13 +1,12 @@
 import {trigger, animate, style, transition, query, stagger, keyframes} from '@angular/animations';
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {TranslateOptions} from '../../translations/translate.service';
+import {Component, Input} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'ngx-notifications-list',
     templateUrl: './notifications-list.component.html',
     styleUrls: ['./notifications-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [trigger('listAnimation', [
         transition('* => *', [
             query(':enter', style({opacity: 0}), {optional: true}),
