@@ -11,6 +11,7 @@ import {NgxCardsModule} from '../../library/src/cards/cards.module';
 import {NgxMiscellaneousModule} from '../../library/src/miscellaneous/miscellaneous.module';
 import {NgxTranslationsModule} from '../../library/src/translations/translations.module';
 import {NgxNotificationsModule} from '../../library/src/notifications/notifications.module';
+import {environment} from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,7 @@ import {NgxNotificationsModule} from '../../library/src/notifications/notificati
         NgxCardsModule,
         NgxMiscellaneousModule,
         NgxTranslationsModule.forRoot({
-            production: false, dictionary: [
+            production: environment.production, dictionary: [
                 {
                     data: {
                         'This does work': 'Dit werkt goed',

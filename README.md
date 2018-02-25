@@ -27,25 +27,49 @@ yarn add @stanvanheumen/ngx-elements
 
 ### <a name="example-usage"></a> Example usage
 
+You should add the modules you want to the `imports` array of your modules.
+
 ```ts
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {NgxFormsModule, NgxCardsModule, NgxMiscellaneousModule} from '@stanvanheumen/ngx-elements';
-
-import {AppComponent} from './app.component';
-
-@NgModule({
-  imports: [
-    BrowserModule,
+import {
     NgxFormsModule,
     NgxCardsModule,
-    NgxMiscellaneousModule
-  ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+    NgxMiscellaneousModule,
+    NgxTranslationsModule,
+    NgxNotificationsModule
+} from '@stanvanheumen/ngx-elements';
+
+import {AppComponent} from './app.component';
+import {environment} from '../environments/environment';
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        NgxFormsModule,
+        NgxCardsModule,
+        NgxMiscellaneousModule,
+        NgxTranslationsModule.forRoot({production: false, dictionary: [...]})
+        NgxNotificationsModule.forRoot()
+    ],
+    declarations: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
+```
+
+To get the best styling you can import the `styling.scss` that is included in the library.
+
+```scss
+@import '~@stanvanheumen/ngx-elements/styles/styles';
+```
+
+To get the correct fonts and icons you should add these two link-tags to the `head` section of your `index.html` (these are not included for performance).
+
+```html
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
 ```
 
 ## License
