@@ -6,8 +6,13 @@ import {NgxLoadingComponent} from './loading/loading.component';
 import {NgxOutsideClickDirective} from './directives/outside-click.directive';
 import {NgxAutoResizeDirective} from './directives/autoresize.directive';
 
+import {StorageService} from './localstorage.service';
+
 @NgModule({
     imports: [CommonModule],
+    providers: [
+        StorageService
+    ],
     declarations: [
         NgxLoadingComponent,
         NgxOutsideClickDirective,

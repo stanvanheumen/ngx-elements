@@ -1,5 +1,8 @@
+import {NotificationsService} from '../../library/src/notifications/notifications.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Notification} from '../../library/src/notifications/notifications-list/notifications-list.component';
 
 @Component({
     selector: 'app-root',
@@ -7,9 +10,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
+    notifications$: Observable<Notification[]>;
     form: FormGroup;
 
+    constructor(private notifications: NotificationsService) {
+    }
+
     ngOnInit() {
+        // Get the notifications observable.
+        this.notifications$ = this.notifications.items;
+
         const required = Validators.required;
         const email = Validators.email;
 
@@ -20,7 +30,7 @@ export class AppComponent implements OnInit {
     }
 
     onSubmit() {
-        alert('The form was submitted.');
+        this.notifications.success('This does work');
     }
 
 }
