@@ -1,0 +1,22 @@
+<div [@backdrop]="backdrop$ | async"
+     class="ngx-modal-backdrop ngx-modal-backdrop--visible"></div>
+
+<div class="ngx-modal-backdrop">
+    <div [@modal]="modal$ | async"
+         (@modal.done)="onAnimationCompleted($event)"
+         (ngxOutsideClick)="onClickOutside($event)"
+         [class]="'ngx-modal ngx-modal--' + modifier"
+         [ngClass]="{'ngx-modal--overflow': overflow}">
+        <ngx-card *ngIf="boilerplate; else data"
+                  [title]="title"
+                  [leftButtonBar]="leftButtonBar"
+                  [rightButtonBar]="rightButtonBar.length > 0 ? rightButtonBar : [{id: 'goBackModal', icon: 'clear'}]"
+                  (onButtonClicked)="onClick($event)">
+            <ng-container *ngTemplateOutlet="data"></ng-container>
+        </ngx-card>
+
+        <ng-template #data>
+            <ng-content></ng-content>
+        </ng-template>
+    </div>
+</div>

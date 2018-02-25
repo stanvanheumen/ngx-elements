@@ -1,0 +1,16 @@
+<label class="ngx-checkbox"
+       [class.ngx-checkbox--grouped]="grouped"
+       [class.ngx-checkbox--single]="single"
+       [class.ngx-checkbox--disabled]="disabled">
+    <span class="ngx-checkbox__group">
+        <input [(ngModel)]="checked"
+               [disabled]="disabled"
+               (ngModelChange)="onChangeCallback(checked)"
+               type="checkbox"
+               class="ngx-checkbox__input">
+        <span class="ngx-checkbox__checkmark"></span>
+    </span>
+    <span class="ngx-checkbox__content">
+        <ng-content></ng-content>
+    </span>
+</label>

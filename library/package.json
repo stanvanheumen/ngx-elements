@@ -1,0 +1,24 @@
+{
+    "name": "@stanvanheumen/ngx-elements",
+    "version": "1.0.0",
+    "license": "CC0-1.0",
+    "author": {
+        "name": "Stan van Heumen <stanvanheumen@gmail.com>",
+        "url": "https://www.linkedin.com/in/stan-van-heumen"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/stanvanheumen/ngx-elements.git"
+    },
+    "bugs": {
+        "url": "https://github.com/stanvanheumen/ngx-elements.git/issues"
+    },
+    "homepage": "https://github.com/stanvanheumen/ngx-elements#readme",
+    "peerDependencies": {
+        "@angular/animations": "^5.2.0",
+        "@angular/common": "^5.2.0",
+        "@angular/core": "^5.2.0",
+        "@angular/forms": "^5.2.0",
+        "@angular/router": "^5.2.0"
+    }
+}

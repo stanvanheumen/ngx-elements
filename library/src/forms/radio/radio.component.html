@@ -1,0 +1,17 @@
+<label class="ngx-radio" tabindex="0"
+       [class.ngx-radio--grouped]="grouped"
+       [class.ngx-radio--single]="single"
+       [class.ngx-radio--disabled]="disabled">
+    <input [(ngModel)]="checked"
+           [value]="value"
+           [disabled]="disabled"
+           (change)="onChangeCallback(checked)"
+           class="ngx-radio__input"
+           type="radio"
+           role="radio"
+           tabindex="-1">
+    <span class="ngx-radio__element"></span>
+    <span class="ngx-radio__label">
+        <ng-content></ng-content>
+    </span>
+</label>

@@ -1,0 +1,38 @@
+<div class="ngx-card"
+     [class.ngx-card--grouped]="grouped">
+    <header *ngIf="title || leftButtonBar.length > 0 || rightButtonBar.length > 0"
+            class="ngx-card-header">
+        <div *ngIf="leftButtonBar.length > 0"
+             class="ngx-card-header__items ngx-card-header__items--left">
+            <button *ngFor="let button of leftButtonBar"
+                    (click)="onButtonClicked.emit(button)"
+                    class="ngx-card-header__button">
+                <i class="material-icons">
+                    {{ button.icon }}
+                </i>
+            </button>
+        </div>
+
+        <span [style.text-align]="direction"
+              class="ngx-card-header__title">
+            {{ title }}
+        </span>
+
+        <div *ngIf="rightButtonBar.length > 0"
+             class="ngx-card-header__items ngx-card-header__items--right">
+            <button *ngFor="let button of rightButtonBar"
+                    (click)="onButtonClicked.emit(button)"
+                    class="ngx-card-header__button">
+                <i class="material-icons">
+                    {{ button.icon }}
+                </i>
+            </button>
+        </div>
+    </header>
+
+    <div [style.padding]="padding"
+         [style.max-height]="maxHeight"
+         class="ngx-card-body">
+        <ng-content></ng-content>
+    </div>
+</div>

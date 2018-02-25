@@ -1,0 +1,17 @@
+<button class="ngx-button"
+        [ngClass]="buttonClass"
+        [attr.type]="type"
+        [disabled]="disabled"
+        role="button">
+    <ngx-loading width="32px"
+                 height="32px"
+                 spacing="0"
+                 color="white">
+    </ngx-loading>
+    <i *ngIf="icon" class="material-icons ngx-button__icon">
+        {{ icon }}
+    </i>
+    <span class="ngx-button__text">
+        <ng-content></ng-content>
+    </span>
+</button>

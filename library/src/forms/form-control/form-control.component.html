@@ -1,0 +1,22 @@
+<label [class.ngx-form-control--grouped]="grouped"
+       [class.ngx-form-control--error]="!valid">
+    <span *ngIf="label" class="ngx-form-control__label">
+        {{ label }}
+        <ng-container *ngIf="required">
+            *
+        </ng-container>
+    </span>
+    <span class="ngx-form-control">
+        <span *ngIf="icon"
+              [class.ngx-form-control__icon--reversed]="reversed"
+              class="ngx-form-control__icon">
+            <i class="material-icons">
+                {{ icon }}
+            </i>
+        </span>
+        <ng-content></ng-content>
+    </span>
+    <span class="ngx-form-control__error">
+        {{ error }}
+    </span>
+</label>

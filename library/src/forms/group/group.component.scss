@@ -1,0 +1,30 @@
+.ngx-group {
+    display: flex;
+    flex-direction: column;
+
+    &--left { justify-content: flex-start; }
+    &--right { justify-content: flex-end; }
+
+    &--grouped { margin-bottom: 20px; }
+
+    &--row, &--column { flex-direction: column; }
+}
+
+:host /deep/ {
+    .ngx-group--full {
+        ngx-button, .ngx-button { width: 100%; }
+    }
+
+    ngx-button:not(:first-child) { margin-top: 5px; }
+
+    .ngx-group--column {
+        ngx-button:not(:first-child) { margin-top: 5px; }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ngx-group { flex-direction: row; }
+    .ngx-group--column { flex-direction: column; }
+
+    :host /deep/ .ngx-group--row ngx-button:not(:first-child) { margin-top: 0; margin-left: 5px; }
+}

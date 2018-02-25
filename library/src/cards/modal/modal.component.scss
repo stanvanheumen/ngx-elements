@@ -1,0 +1,46 @@
+.ngx-modal {
+    width: 100%;
+    filter: none;
+    max-width: 750px;
+    margin: 20px auto 0;
+    will-change: transform, opacity;
+
+    &--small { max-width: 400px; }
+}
+
+.ngx-modal-backdrop {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 300;
+    padding: 20px;
+    position: fixed;
+    overflow-y: auto;
+    will-change: opacity;
+
+    &--visible { background-color: rgba(0, 0, 0, 0.5); }
+}
+
+:host /deep/ {
+    .ngx-card-body {
+        overflow-x: inherit;
+    }
+
+    .ngx-modal--overflow {
+        .ngx-card-body { overflow-y: auto; max-height: calc(100vh - 170px); }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    .ngx-modal { margin: 40px auto 0; }
+    .ngx-modal-backdrop { padding: 40px 20px 20px;}
+
+    :host /deep/ {
+        .ngx-modal--overflow {
+            .ngx-card-body { max-height: calc(100vh - 210px); }
+        }
+    }
+
+}
