@@ -137,7 +137,7 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/language-service@^5.2.0":
+"@angular/language-service@^5.2.0w":
   version "5.2.6"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-5.2.6.tgz#f88f49f54a82e95b05af50ded22f4ebbb344df1f"
 
@@ -158,10 +158,6 @@
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-5.2.6.tgz#513b555d5cc4b206833646468ffb47fa8f5c1c0b"
   dependencies:
     tslib "^1.7.1"
-
-"@bravobit/scss-starter@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@bravobit/scss-starter/-/scss-starter-1.0.8.tgz#6e1c1b98a7e25ae83cf792096ffe803bc6c383b4"
 
 "@ngtools/json-schema@1.2.0":
   version "1.2.0"
@@ -1115,6 +1111,12 @@ copy-concurrently@^1.0.0:
 copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
+
+copy-dir-cli@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/copy-dir-cli/-/copy-dir-cli-0.0.3.tgz#6b76790a757108c1317abb831b44bfc2d6fdad4e"
+  dependencies:
+    commander "^2.9.0"
 
 copy-webpack-plugin@~4.4.1:
   version "4.4.2"
@@ -3365,6 +3367,10 @@ ncname@1.0.x:
   resolved "https://registry.yarnpkg.com/ncname/-/ncname-1.0.0.tgz#5b57ad18b1ca092864ef62b0b1ed8194f383b71c"
   dependencies:
     xml-char-classes "^1.0.0"
+
+ncp@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ncp/-/ncp-2.0.0.tgz#195a21d6c46e361d2fb1281ba38b91e9df7bdbb3"
 
 negotiator@0.6.1:
   version "0.6.1"

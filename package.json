@@ -4,7 +4,9 @@
     "license": "MIT",
     "scripts": {
         "playground": "ng serve",
-        "bundle": "ng-packagr -p ./library/ng-package.json"
+        "bundle": "npm run package && npm run styles",
+        "package": "ng-packagr -p ./library/ng-package.json",
+        "styles": "ncp ./styles ./dist/styles"
     },
     "private": true,
     "dependencies": {
@@ -24,8 +26,9 @@
     "devDependencies": {
         "@angular/cli": "~1.7.0",
         "@angular/compiler-cli": "^5.2.0",
-        "@angular/language-service": "^5.2.0",
-        "@bravobit/scss-starter": "^1.0.8",
+        "@angular/language-service": "^5.2.0w",
+        "copy-dir-cli": "^0.0.3",
+        "ncp": "^2.0.0",
         "ng-packagr": "^2.1.0",
         "tsickle": "^0.27.2",
         "tslib": "^1.9.0",
