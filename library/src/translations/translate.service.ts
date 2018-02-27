@@ -19,7 +19,7 @@ export class TranslateService {
     private readonly dictionary = [];
 
     // The default dictionary.
-    private readonly defaultDictionary = [{languages: ['en-US', 'en'], data: null, name: 'English'}];
+    private readonly defaultDictionary = [{languages: ['en-US', 'en'], data: null, name: 'English (English)'}];
 
     // The current language.
     private currentLanguage$ = new BehaviorSubject<string>(null);
