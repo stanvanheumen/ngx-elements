@@ -1,4 +1,5 @@
 import {StorageService} from '../miscellaneous/localstorage.service';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Injectable, Optional} from '@angular/core';
 import {TranslateConfig} from './translate.config';
 
@@ -14,25 +15,29 @@ export class TranslateService {
     // The token used in the storage.
     private readonly storageToken = '__NGX_CURRENT_LANGUAGE__';
 
-    // The current language.
-    private language: string;
-
     // The available languages.
-    private defaultDictionary = 'en';
-    private dictionary = [];
+    private readonly dictionary = [];
+
+    // The default dictionary.
+    private readonly defaultDictionary = [{languages: ['en-US', 'en'], data: null, name: 'English'}];
+
+    // The current language.
+    private currentLanguage$ = new BehaviorSubject<string>(null);
 
     constructor(private storage: StorageService,
                 @Optional() private config: TranslateConfig) {
         // Retrieve the dictionary from the config.
-        if (!this.config || !this.config.dictionary || this.config.dictionary.length === 0) {
-            throw new Error('No dictionary was passed to the CoreModule; At least one language is required.');
+        if (!this.config || !this.config.dictionary) {
+            throw new Error('No dictionary was passed to the NgxTranslationsModule; An empty array is required.');
         }
 
         // Save the dictionary.
-        this.dictionary = this.config.dictionary;
+        this.dictionary = this.config.dictionary.concat(
+            this.defaultDictionary
+        );
 
         // Check if the languages are all correct if the application is in development mode.
-        if (config.production && !this.valid()) {
+        if ((config && !config.production) && !this.valid()) {
             console.warn('LANGUAGE_EXCEPTION: The language files have been compared and they have not passed the validation.');
         }
 
@@ -57,7 +62,7 @@ export class TranslateService {
 
         // Check if the browsers language is supported in the system.
         if (!this.isLanguageSupported(browserLanguage)) {
-            browserLanguage = this.defaultDictionary;
+            browserLanguage = this.defaultDictionary[0].languages[0];
         }
 
         // If the browser language was not supported put one in the cookie.
@@ -69,11 +74,14 @@ export class TranslateService {
 
     use(language: string) {
         if (!this.isLanguageSupported(language)) {
+            const defaultLanguage = this.defaultDictionary[0].languages[0];
+            this.use(defaultLanguage);
+            console.warn(`The language '${language}' is not supported; The language has been set to '${defaultLanguage}'`);
             return;
         }
 
-        this.language = language;
-        this.storage.setString(this.storageToken, this.language);
+        this.currentLanguage$.next(language);
+        this.storage.setString(this.storageToken, language);
     }
 
     instant(key: string | TranslateOptions) {
@@ -81,7 +89,7 @@ export class TranslateService {
     }
 
     getLanguage() {
-        return this.language;
+        return this.currentLanguage$.getValue();
     }
 
     getDictionary() {
@@ -89,13 +97,8 @@ export class TranslateService {
     }
 
     translate(data: string | TranslateOptions) {
-        // Validate if the language does exist in the dictionary, else throw an error.
-        if (!this.isLanguageSupported(this.language)) {
-            throw new Error(`LANGUAGE_EXCEPTION: The current language is not supported '${this.language}'`);
-        }
-
         // Retrieve the entire dictionary object.
-        const dictionary = this.getLanguageDictionary(this.language);
+        const dictionary = this.getLanguageDictionary(this.currentLanguage$.getValue());
 
         // Check if the dictionary exists.
         // If not exists the language must be the default (English).

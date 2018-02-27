@@ -19,4 +19,5 @@ export interface Translation {
      * The name of the translation.
      */
     name: string;
+
 }
