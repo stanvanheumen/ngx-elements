@@ -5,7 +5,7 @@
     },
     "apps": [
         {
-            "root": "playground",
+            "root": "example",
             "outDir": "dist",
             "assets": [
                 "assets"
