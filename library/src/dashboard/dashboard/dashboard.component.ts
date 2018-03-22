@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 import {NgxDashboardEvent} from '../dashboard.interfaces';
-import {DomSanitizer} from '@angular/platform-browser';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -42,7 +42,7 @@ export class NgxDashboardComponent {
      */
     navigationVisible$ = new BehaviorSubject(false);
 
-    get headerBackgroundColor() {
+    get headerBackgroundColor(): SafeStyle {
         return this._sanitizer.bypassSecurityTrustStyle(this.background);
     }
 

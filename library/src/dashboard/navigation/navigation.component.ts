@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, Host, Input, OnDestroy, OnInit, Optional} from '@angular/core';
 import {trigger, animate, style, transition, state} from '@angular/animations';
 import {NgxDashboardComponent} from '../dashboard/dashboard.component';
+import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 import {combineLatest} from 'rxjs/observable/combineLatest';
 import {StorageService} from '@stanvanheumen/ngx-storage';
 import {NavigationGroup} from '../dashboard.interfaces';
-import {DomSanitizer} from '@angular/platform-browser';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
@@ -40,7 +40,7 @@ export class NgxNavigationComponent implements OnInit, OnDestroy {
     // Data.
     data$ = new BehaviorSubject<NavigationGroup[]>([]);
 
-    get navigationBackgroundColor() {
+    get navigationBackgroundColor(): SafeStyle {
         return this._sanitizer.bypassSecurityTrustStyle(this.background);
     }
 
