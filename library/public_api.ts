@@ -14,6 +14,11 @@ export * from './src/forms/form-control/form-control.component';
 export * from './src/forms/group/group.component';
 export * from './src/forms/radio/radio.component';
 
+export * from './src/dashboard/dashboard.module';
+export * from './src/dashboard/dashboard.interfaces';
+export * from './src/dashboard/dashboard/dashboard.component';
+export * from './src/dashboard/navigation/navigation.component';
+
 export * from './src/miscellaneous/miscellaneous.module';
 export * from './src/miscellaneous/autoresize.directive';
 export * from './src/miscellaneous/outside-click.directive';

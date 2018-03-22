@@ -1,0 +1,26 @@
+<div class="ngx-wrapper">
+    <ng-content select="ngx-navigation"></ng-content>
+    <div class="ngx-content">
+        <header [style.background]="headerBackgroundColor"
+                class="ngx-header">
+            <button (click)="navigationVisible$.next(true)"
+                    class="ngx-header__button ngx-header__button--mobile">
+                <i class="material-icons">menu</i>
+            </button>
+            <div class="ngx-header__group">
+                <button *ngFor="let button of buttons"
+                        (click)="onButtonClicked.emit(button)"
+                        class="ngx-header__button">
+                    <i class="material-icons">{{ button.icon }}</i>
+                </button>
+            </div>
+        </header>
+        <main class="ngx-main">
+            <div [style.padding]="padding"
+                 [style.max-width]="maxWidth"
+                 style="margin: 0 auto;">
+                <ng-content></ng-content>
+            </div>
+        </main>
+    </div>
+</div>

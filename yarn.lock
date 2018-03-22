@@ -194,6 +194,12 @@
     semver "^5.3.0"
     semver-intersect "^1.1.2"
 
+"@stanvanheumen/ngx-storage@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@stanvanheumen/ngx-storage/-/ngx-storage-1.0.5.tgz#5fe2f0bbe1ba0553d7ace6d13fc82aeb070aee01"
+  dependencies:
+    tslib "^1.7.1"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

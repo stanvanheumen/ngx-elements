@@ -1,0 +1,49 @@
+<nav [class.ngx-navigation--visible]="visible$ | async"
+     [style.background]="navigationBackgroundColor"
+     class="ngx-navigation">
+    <div class="ngx-navigation-header">
+        <button (click)="visible.next(false)"
+                class="ngx-navigation-header__button">
+            <i class="material-icons">menu</i>
+        </button>
+        <ng-content></ng-content>
+    </div>
+    <div class="ngx-navigation-wrapper">
+        <div *ngFor="let group of data$ | async"
+             [@groupState]="group.state"
+             [class.ngx-navigation-group--expanded]="group.state === 'opened'"
+             class="ngx-navigation-group">
+            <div (click)="onGroupClicked(group)"
+                 class="ngx-navigation-group__wrapper">
+                <span class="ngx-navigation-group__title">
+                    {{ group.title | translate }}
+                    <i class="material-icons ngx-navigation-group__icon">keyboard_arrow_down</i>
+                </span>
+
+                <span class="ngx-navigation-group__description">
+                    {{ group.description }}
+                </span>
+            </div>
+
+            <div *ngFor="let item of group.items"
+                 [routerLink]="item.href"
+                 [routerLinkActive]="'ngx-navigation-item--active'"
+                 [routerLinkActiveOptions]="{exact: item.exact}"
+                 (click)="visible.next(false)"
+                 class="ngx-navigation-item">
+                <i *ngIf="item.icon"
+                   class="material-icons ngx-navigation-item__icon">
+                    {{ item.icon }}
+                </i>
+                <span class="ngx-navigation-item__text">
+                    {{ item.title | translate }}
+                </span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div [class.ngx-navigation-back--visible]="visible$ | async"
+     (click)="visible.next(false)"
+     class="ngx-navigation-back">
+</div>

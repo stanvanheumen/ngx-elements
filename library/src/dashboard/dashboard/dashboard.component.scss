@@ -1,0 +1,62 @@
+.ngx-wrapper {
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.ngx-content {
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.ngx-main {
+    width: 100%;
+    overflow-y: scroll;
+    background-color: #d5dae6;
+    height: calc(100vh - 60px);
+    -webkit-overflow-scrolling: touch;
+}
+
+.ngx-header {
+    color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px 0 10px;
+    background-color: #5851d6;
+
+    &__button {
+        width: 60px;
+        color: white;
+        height: 60px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        transition: background-color 150ms cubic-bezier(0, 0, .2, 1);
+
+        &--mobile {
+            margin-right: 10px;
+        }
+
+        &:hover {
+            background-color: rgba(black, 0.3);
+        }
+    }
+
+    &__group {
+        margin-left: auto;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ngx-header {
+        padding-left: 20px;
+
+        &__button--mobile {
+            display: none;
+        }
+    }
+}
