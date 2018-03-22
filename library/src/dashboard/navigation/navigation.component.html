@@ -16,7 +16,7 @@
             <div (click)="onGroupClicked(group)"
                  class="ngx-navigation-group__wrapper">
                 <span class="ngx-navigation-group__title">
-                    {{ group.title | translate }}
+                    {{ formatter ? formatter(group.title) : group.title }}
                     <i class="material-icons ngx-navigation-group__icon">keyboard_arrow_down</i>
                 </span>
 
@@ -36,7 +36,7 @@
                     {{ item.icon }}
                 </i>
                 <span class="ngx-navigation-item__text">
-                    {{ item.title | translate }}
+                    {{ formatter ? formatter(item.title) : item.title }}
                 </span>
             </div>
         </div>
