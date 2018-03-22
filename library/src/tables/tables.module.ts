@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 import {NgxCardsModule} from '../cards/cards.module';
 import {NgxMiscellaneousModule} from '../miscellaneous/miscellaneous.module';
@@ -11,7 +12,7 @@ import {NgxTableCellComponent} from './table-cell/table-cell.component';
 import {NgxTableColumnComponent} from './table-column/table-column.component';
 
 @NgModule({
-    imports: [CommonModule, NgxCardsModule, NgxMiscellaneousModule],
+    imports: [CommonModule, FormsModule, NgxCardsModule, NgxMiscellaneousModule],
     declarations: [
         NgxPagerComponent,
         NgxTableComponent,
