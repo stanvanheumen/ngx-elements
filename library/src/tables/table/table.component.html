@@ -1,0 +1,121 @@
+<ngx-card [rightButtonBar]="buttonBar"
+          [grouped]="grouped"
+          [title]="title"
+          (onButtonClicked)="onCardButtonClicked($event)"
+          padding="0">
+    <div class="ngx-table-data">
+        <div class="ngx-table-search">
+            <input [(ngModel)]="query"
+                   [placeholder]="searchPlaceholder"
+                   (keyup)="onSearch($event.target.value)"
+                   class="ngx-table-search__input"
+                   type="search">
+            <i class="material-icons ngx-table-search__icon">search</i>
+        </div>
+
+        <!-- The static header that will show the columns that the user supplied. -->
+        <div *ngIf="columns$ | async as columns"
+             class="ngx-table-header">
+
+            <!-- The table cell that contains the checkbox. -->
+            <ngx-table-cell *ngIf="hasCheckbox"
+                            [style.transform]="'translateX(' + -scrollLeftCache + 'px)'"
+                            class="fixed height">
+                <ngx-checkbox *ngIf="page$ | async as page"
+                              [checked]="selectedPagesCache[page.pageNumber]"
+                              [(ngModel)]="selectedPagesCache[page.pageNumber]"
+                              (ngModelChange)="onSelectedPageChange(selectedPagesCache[page.pageNumber])"
+                              [single]="true"></ngx-checkbox>
+            </ngx-table-cell>
+
+            <!-- The actual user defined columns. -->
+            <div *ngFor="let column of columns; trackBy: trackByColumnIdentifier"
+                 [style.width]="getTableHeaderCellWidth(column.width$ | async, columns.length)"
+                 [style.min-width]="getTableHeaderCellWidth(column.width$ | async, columns.length)"
+                 [style.transform]="'translateX(' + -scrollLeftCache + 'px)'"
+                 [class]="getTableHeaderCellClasses(column)"
+                 (click)="onColumnClick(column)">
+                {{ column.name }}
+                <i *ngIf="column.sort"
+                   [class.desc]="column.sort === 'desc'"
+                   class="material-icons">
+                    arrow_drop_down
+                </i>
+            </div>
+        </div>
+
+        <!-- The wrapper that will make the view scrollable. -->
+        <div [style.height]="'calc(100vh - ' + offset + ')'"
+             (scroll)="onScroll($event)"
+             class="ngx-table-wrapper">
+
+            <!-- The table that contains that fake header and visible rows. -->
+            <table *ngIf="columns$ | async as columns">
+
+                <!-- The fake header row that will not be visible for the user. -->
+                <ngx-table-row [fake]="true">
+
+                    <!-- The table cell that emulates the checkbox -->
+                    <ngx-table-cell *ngIf="hasCheckbox" class="fixed"></ngx-table-cell>
+
+                    <!-- The columns from the user API -->
+                    <ng-content select="ngx-table-column"></ng-content>
+                </ngx-table-row>
+
+                <ng-container *ngIf="data$ | async as dataSource; else loading">
+                    <ng-container *ngIf="dataSource?.data.length > 0; else empty">
+
+                        <!-- The actual visible rows with the from the dataSource. -->
+                        <ngx-table-row *ngFor="let row of dataSource?.data; trackByItemIdentifier"
+                                       [clickable]="canClick">
+
+                            <!-- The cell containing the checkbox. -->
+                            <ngx-table-cell *ngIf="hasCheckbox"
+                                            class="fixed">
+                                <ngx-checkbox [checked]="selectedCache[row[identifier]]"
+                                              [(ngModel)]="selectedCache[row[identifier]]"
+                                              (ngModelChange)="onSelectedRowChange()"
+                                              [single]="true">
+                                </ngx-checkbox>
+                            </ngx-table-cell>
+
+                            <!-- The actual cells that are defined in the API. -->
+                            <ngx-table-cell *ngFor="let column of columns; trackBy: trackByColumnIdentifier"
+                                            [class]="column.classes"
+                                            (click)="onRowClicked.emit(row)">
+                                <ng-container *ngIf="column.templateRef">
+                                    <ng-container
+                                        *ngTemplateOutlet="column.templateRef; context: {$implicit: {}, data: row}">
+                                    </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="!column.templateRef">
+                                    {{ row[column.property] }}
+                                </ng-container>
+                            </ngx-table-cell>
+                        </ngx-table-row>
+
+                    </ng-container>
+                </ng-container>
+            </table>
+        </div>
+    </div>
+
+    <!-- The pager that handles the paging events. -->
+    <ngx-pager [data]="page$ | async"
+               [perPagePlaceholder]="perPagePlaceholder"
+               [ofPlaceholder]="ofPlaceholder"
+               (dataChange)="onPageEvent($event)">
+    </ngx-pager>
+</ngx-card>
+
+<ng-template #loading>
+    <div class="ngx-table-loading">
+        <ngx-loading></ngx-loading>
+    </div>
+</ng-template>
+
+<ng-template #empty>
+    <div class="ngx-table-empty">
+        {{ emptyPlaceholder }}
+    </div>
+</ng-template>

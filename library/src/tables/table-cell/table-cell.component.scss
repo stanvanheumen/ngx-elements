@@ -1,0 +1,31 @@
+:host {
+    font-size: 15px;
+    text-align: left;
+    line-height: 1.2;
+    font-weight: 500;
+    padding: 14px 20px;
+    display: table-cell;
+    word-wrap: break-word;
+    vertical-align: middle;
+
+    &.fixed {
+        padding: 0;
+        width: 38px;
+        min-width: 38px;
+
+        & > div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+
+    &.height > div {
+        height: 50px;
+    }
+
+    &.fit { width: 1%; white-space: nowrap; }
+    &.left { text-align: left; }
+    &.center { text-align: center; }
+    &.right { text-align: right; }
+}

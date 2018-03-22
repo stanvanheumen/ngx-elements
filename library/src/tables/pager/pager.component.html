@@ -1,0 +1,28 @@
+<div class="ngx-pager-group">
+    <label class="ngx-pager-label">
+        <span class="ngx-pager-only-tablet">
+            {{ perPagePlaceholder }}
+        </span>
+        <select [(ngModel)]="pageSize"
+                (ngModelChange)="onPageSizeChange($event)"
+                class="ngx-pager-select">
+            <option *ngFor="let size of pageSizes"
+                    [value]="size">
+                {{ size }}
+            </option>
+        </select>
+    </label>
+    <span class="ngx-pager-text">
+        {{ pageStart }} - {{ pageEnd }} {{ ofPlaceholder }} {{ totalItems }}
+    </span>
+    <button [disabled]="pageNumber - 1 <= 0"
+            (click)="onPageChange(pageNumber - 1)"
+            class="ngx-pager-button">
+        <i class="material-icons">arrow_back</i>
+    </button>
+    <button [disabled]="pageNumber + 1 > totalPages"
+            (click)="onPageChange(pageNumber + 1)"
+            class="ngx-pager-button">
+        <i class="material-icons">arrow_forward</i>
+    </button>
+</div>

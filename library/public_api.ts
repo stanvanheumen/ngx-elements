@@ -2,6 +2,11 @@ export * from './src/cards/cards.module';
 export * from './src/cards/card/card.component';
 export * from './src/cards/modal/modal.component';
 
+export * from './src/tables/tables.module';
+export * from './src/tables/tables.interfaces';
+export * from './src/tables/table/table.component';
+export * from './src/tables/table-column/table-column.component';
+
 export * from './src/forms/forms.module';
 export * from './src/forms/button/button.component';
 export * from './src/forms/checkbox/checkbox.component';

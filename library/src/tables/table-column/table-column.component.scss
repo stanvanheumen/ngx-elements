@@ -1,0 +1,20 @@
+:host {
+    line-height: 0;
+    padding: 0 20px;
+    font-size: 15px;
+    max-width: 100%;
+    overflow: hidden;
+    text-align: left;
+    font-weight: 500;
+    position: relative;
+    display: table-cell;
+    white-space: nowrap;
+    word-wrap: break-word;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+
+    &.fit { width: 1%; white-space: nowrap; }
+    &.left { text-align: left; }
+    &.center { text-align: center; }
+    &.right { text-align: right; }
+}
